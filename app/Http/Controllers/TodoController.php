@@ -17,8 +17,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todoArray = Todo::all();
-        return view('pages.index', compact('todoArray'));
+        return view('pages.index',['todoArray'=>Todo::all()]);
     }
 
     /**
@@ -62,8 +61,8 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        $todo = Todo::find($id);
-        return view('pages.edit', ['id' => $id, 'todo' => $todo]);
+        $todo = Todo::findOrFail($id);
+        return view('pages.edit', ['todo' => $todo]);
     }
 
     /**
@@ -75,7 +74,7 @@ class TodoController extends Controller
      */
     public function update(TodoStoreRequest $request, $id)
     {
-        $todo = Todo::find($id);
+        $todo = Todo::findOrFail($id);
         $todo->update($request->validated());
         return $this->index();
     }
@@ -92,7 +91,7 @@ class TodoController extends Controller
         if ($todo) {
             $todo->delete();
         }
-        return $this->index();
+        return back();
 
     }
 }

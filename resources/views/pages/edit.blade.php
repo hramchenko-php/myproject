@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 </header>
 <body>
-<form action="{{route('todo.update',['todo'=>$id])}}" method="post">
+<form action="{{route('todo.update',['todo'=>$todo->id])}}" method="post">
     @csrf
     @method('PATCH')
     <input type="text" name="name" value="{{$todo->name}}">

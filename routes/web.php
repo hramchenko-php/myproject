@@ -7,5 +7,5 @@ Route::fallback(function () {
 });
 
 //TODO Обработка ресурсов связанных с приложением
-Route::resource('todo', 'TodoController');
-Route::get('test','TestController@index');
+//исключен неиспользуемый экшн show
+Route::resource('todo', 'TodoController')->except(['show',]);
